@@ -1,23 +1,7 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-pip install yfinance
-
-
-# In[ ]:
-
-
-pip install --upgrade yfinance
-
-
-# In[79]:
-
-
 import yfinance as yf
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 assets = ['PG', '^GSPC']
 pf_data = pd.DataFrame()
@@ -50,15 +34,7 @@ for asset in assets:
 print("\n✅ Datos finales:")
 print(pf_data.head())
 
-
-# In[81]:
-
-
 pf_data.tail()
-
-
-# In[85]:
-
 
 (pf_data / pf_data.iloc[0] * 100).plot(figsize=(10,5))
 plt.title('Desempeño normalizado desde 2010 (base 100)')
@@ -66,21 +42,9 @@ plt.ylabel('Índice (base 100)')
 plt.grid(True)
 plt.show()
 
-
-# In[87]:
-
-
 log_returns = np.log(pf_data/pf_data.shift(1))
 
-
-# In[89]:
-
-
 log_returns.mean()*250
-
-
-# In[93]:
-
 
 import numpy as np
 
@@ -93,77 +57,29 @@ cov_matrix = log_returns.cov() * 250
 # 3. Mostrarla
 print(cov_matrix)
 
-
-# In[99]:
-
-
 log_returns.cov() * 250
-
-
-# In[95]:
-
 
 log_returns.corr()
 
-
-# In[101]:
-
-
 num_assets=len(assets)
-
-
-# In[103]:
-
 
 num_assets
 
-
-# In[113]:
-
-
 arr = np.random.random(2)
 arr
-
-
-# In[115]:
-
-
 arr[0] + arr[1]
-
-
-# In[121]:
-
 
 weights = np.random.random(num_assets)
 weights /= np.sum(weights)
 weights
 
-
-# In[123]:
-
-
 weights[0] + weights[1]
-
-
-# In[125]:
-
 
 np.sum(weights*log_returns.mean())*250
 
-
-# In[127]:
-
-
 np.dot(weights.T, np.dot(log_returns.cov() *250, weights))
 
-
-# In[129]:
-
-
 np.sqrt(np.dot(weights.T,np.dot(log_returns.cov() * 250, weights)))
-
-
-# In[133]:
 
 
 pfolio_returns = []
@@ -177,11 +93,6 @@ for x in range (1000):
 
 pfolio_returns, pfolio_volatilities
     
-
-
-# In[135]:
-
-
 pfolio_returns = []
 pfolio_volatilities = []
 
@@ -197,26 +108,13 @@ pfolio_volatilities = np.array(pfolio_volatilities)
 pfolio_returns, pfolio_volatilities
     
 
-
-# In[141]:
-
-
 portfolios = pd.DataFrame({'Return': pfolio_returns, 'Volatility' : pfolio_volatilities})
-
-
-# In[143]:
 
 
 portfolios.head()
 
 
-# In[145]:
-
-
 portfolios.tail()
-
-
-# In[157]:
 
 
 import matplotlib.pyplot as plt
@@ -230,11 +128,8 @@ portfolios_subset.plot(x='Volatility', y='Return', kind='scatter', figsize=(10, 
 plt.xlabel('Expected Volatility')
 plt.ylabel('Expected Return')
 
-# Mostrar la gráfica
 plt.show()
 
-
-# In[ ]:
 
 
 
