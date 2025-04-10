@@ -13,4 +13,5 @@ yfinance==0.2.55
 streamlit
 pandas
 aiobotocore
-
+python-dotenv
+google-generativeai
