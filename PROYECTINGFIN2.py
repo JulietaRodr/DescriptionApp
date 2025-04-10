@@ -5,7 +5,6 @@ import pandas as pd
 import google.generativeai as genai
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.express as px
 from datetime import datetime
 from pandas.tseries.offsets import DateOffset
 import requests
